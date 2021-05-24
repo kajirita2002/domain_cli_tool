@@ -2,4 +2,7 @@
 /domainify/domainify
 /coolify/coolify
 /synonyms/synonyms
+/available/available
 .env
+/domainfinder/lib/*
+/domainfinder/domainfinder
