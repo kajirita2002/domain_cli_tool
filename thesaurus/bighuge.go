@@ -22,7 +22,7 @@ type words struct {
 // APIにアクセスして受け取ったレスポンスを解釈して返す
 func (b *BigHuge) Synonyms(term string) ([]string, error) {
 	var syns []string
-	response, err := http.Get("http://words.bighuge.com/api/2" +
+	response, err := http.Get("https://words.bighugelabs.com/api/2/" +
 		b.APIKey + "/" + term + "/json")
 	if err != nil {
 		return syns, fmt.Errorf("bighuge: %qの類語検索に失敗しました: %v", term, err)
