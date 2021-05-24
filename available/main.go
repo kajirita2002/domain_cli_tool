@@ -2,8 +2,12 @@ package main
 
 import (
 	"bufio"
+	"fmt"
+	"log"
 	"net"
+	"os"
 	"strings"
+	"time"
 )
 
 func exists(domain string) (bool, error) {
@@ -23,4 +27,25 @@ func exists(domain string) (bool, error) {
 		}
 	}
 	return true, nil
+}
+
+
+
+// 返された真偽値を理解しやすいようにする
+var marks = map[bool]string{true: "○", false: "×"}
+
+func main() {
+	s := bufio.NewScanner(os.Stdin)
+	for s.Scan() {
+		domain := s.Text()
+		fmt.Print(domain, " ")
+		exist, err := exists(domain)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		// 使われていないものを○にする
+		fmt.Println(marks[!exist])
+		// サーバーの負荷の上昇を避けるために1秒休止している
+		time.Sleep(1 * time.Second)
+	}
 }
